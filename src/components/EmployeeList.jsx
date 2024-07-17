@@ -1,16 +1,29 @@
 import React from 'react';
+import './Employee.css'
 
-const EmployeeList = ({ employees = [], onEdit, onDelete }) => (
-  <div className="employee-list">
-    {employees.map((employee, index) => (
-      <div className="employee" key={index}>
-        <p>{employee.name} {employee.surname}</p>
-        <p>{employee.position}</p>
-        <button onClick={() => onEdit(employee)}>Update Employee</button>
-        <button onClick={() => onDelete(employee.id)}>Delete</button>
-      </div>
-    ))}
-  </div>
-);
+const EmployeeList = ({ employees, onEdit, onDelete }) => {
+  return (
+    <div className="employee-list">
+      {employees.map((employee) => (
+        <div key={employee.id} className="employee-item">
+          {employee.imageUrl && (
+            <img src={employee.imageUrl} alt="Employee" className="employee-image" />
+          )}
+          <div className="employee-details">
+            <h3>{employee.name} {employee.surname}</h3>
+            <p>Email: {employee.email}</p>
+            <p>ID Number: {employee.idNum}</p>
+            <p>Position: {employee.position}</p>
+            <p>Department: {employee.department}</p>
+            <p>Phone: {employee.phone}</p>
+            <p>Start Date: {employee.startDate}</p>
+            <button onClick={() => onEdit(employee)}>Edit</button>
+            <button onClick={() => onDelete(employee.id)}>Delete</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default EmployeeList;

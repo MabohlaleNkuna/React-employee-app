@@ -3,6 +3,7 @@ import HeaderComp from './components/HeaderComp';
 import EmployeeList from './components/EmployeeList';
 import EmployeeForm from './components/EmployeeForm';
 import SearchBar from './components/SearchBar';
+import './App.css'
 
 const App = () => {
   // State to manage employees, selected employee, and search query
@@ -62,17 +63,17 @@ const App = () => {
 
   return (
     <div className="app">
-      <HeaderComp />
-      <SearchBar onSearch={handleSearch} />
-      <EmployeeForm
-        selectedEmployee={selectedEmployee}
-        onSave={handleAddOrUpdateEmployee}
-      />
-      <EmployeeList
-        employees={filteredEmployees}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
+    <HeaderComp />
+    <SearchBar onSearch={handleSearch} />
+    <EmployeeForm
+      selectedEmployee={selectedEmployee}
+      onSave={handleAddOrUpdateEmployee}
+    />
+    <EmployeeList
+      employees={filteredEmployees}
+      onEdit={handleEdit}
+      onDelete={handleDelete}
+    />
     </div>
   );
 };
