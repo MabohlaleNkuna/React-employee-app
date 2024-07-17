@@ -1,9 +1,7 @@
-// src/components/EmployeeForm.js
 import React, { useState, useEffect } from 'react';
 
 const EmployeeForm = ({ selectedEmployee, onSave }) => {
   const [employee, setEmployee] = useState({
-    id: '',
     name: '',
     surname: '',
     email: '',
@@ -11,7 +9,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
     department: '',
     phone: '',
     imageUrl: '',
-    startDate: ''
+    startDate: '',
   });
 
   useEffect(() => {
@@ -24,7 +22,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
     const { name, value } = e.target;
     setEmployee((prevEmployee) => ({
       ...prevEmployee,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -32,7 +30,6 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
     e.preventDefault();
     onSave(employee);
     setEmployee({
-      id: '',
       name: '',
       surname: '',
       email: '',
@@ -40,40 +37,77 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
       department: '',
       phone: '',
       imageUrl: '',
-      startDate: ''
+      startDate: '',
     });
   };
 
-  const inputFields = [
-    { type: 'text', name: 'name', placeholder: 'Name' },
-    { type: 'text', name: 'surname', placeholder: 'Surname' },
-    { type: 'email', name: 'email', placeholder: 'Email' },
-    { type: 'text', name: 'position', placeholder: 'Position' },
-    { type: 'text', name: 'department', placeholder: 'Department' },
-    { type: 'tel', name: 'phone', placeholder: 'Phone' },
-    { type: 'url', name: 'imageUrl', placeholder: 'Image URL' },
-    { type: 'date', name: 'startDate', placeholder: 'Start Date' }
-  ];
-
-  const inputElements = [];
-  for (let i = 0; i < inputFields.length; i++) {
-    const field = inputFields[i];
-    inputElements.push(
-      <input
-        key={field.name}
-        type={field.type}
-        name={field.name}
-        value={employee[field.name]}
-        onChange={handleChange}
-        placeholder={field.placeholder}
-      />
-    );
-  }
-
   return (
-    <form className="employee-form" onSubmit={handleSubmit}>
-      {inputElements}
-      <button type="submit">Save Employee</button>
+    <form id="employee-form" onSubmit={handleSubmit}>
+      <h2>{selectedEmployee ? 'Edit Employee' : 'Add Employee'}</h2>
+      <input
+        type="text"
+        name="name"
+        value={employee.name}
+        onChange={handleChange}
+        placeholder="Name"
+        required
+      />
+      <input
+        type="text"
+        name="surname"
+        value={employee.surname}
+        onChange={handleChange}
+        placeholder="Surname"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        value={employee.email}
+        onChange={handleChange}
+        placeholder="Email"
+        required
+      />
+      <input
+        type="text"
+        name="position"
+        value={employee.position}
+        onChange={handleChange}
+        placeholder="Position"
+        required
+      />
+      <input
+        type="text"
+        name="department"
+        value={employee.department}
+        onChange={handleChange}
+        placeholder="Department"
+        required
+      />
+      <input
+        type="text"
+        name="phone"
+        value={employee.phone}
+        onChange={handleChange}
+        placeholder="Phone"
+        required
+      />
+      <input
+        type="text"
+        name="imageUrl"
+        value={employee.imageUrl}
+        onChange={handleChange}
+        placeholder="Image URL"
+      />
+      <input
+        type="date"
+        name="startDate"
+        value={employee.startDate}
+        onChange={handleChange}
+        placeholder="Start Date"
+        required
+      />
+      <button type="submit">{selectedEmployee ? 'Update' : 'Add'} Employee</button>
     </form>
   );
 };

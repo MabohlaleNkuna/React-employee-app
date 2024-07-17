@@ -6,7 +6,7 @@ const EmployeeList = ({ employees = [], onEdit, onDelete }) => (
       <div className="employee" key={index}>
         <p>{employee.name} {employee.surname}</p>
         <p>{employee.position}</p>
-        <button onClick={() => onEdit(employee)}>Edit</button>
+        <button onClick={() => onEdit(employee)}>Update Employee</button>
         <button onClick={() => onDelete(employee.id)}>Delete</button>
       </div>
     ))}
