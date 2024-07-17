@@ -133,12 +133,12 @@ select {
   }
 }
 
-/* Responsive adjustments for screens smaller than 388px */
-@media (max-width: 388px) {
+
+@media (max-width: 1120px) {
   .app {
     width: 100%;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 50px;
   }
 }
   
