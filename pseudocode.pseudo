@@ -4,7 +4,7 @@ DESIGN wireframes for main components:
   - Employee List
   - Add/Edit Employee Form
   - Search Bar
-  - Navigation
+  
 Style the Application
 DEFINE consistent color scheme and typography using CSS or Tailwind
 
@@ -35,13 +35,10 @@ DEFINE consistent color scheme and typography using CSS or Tailwind
     INCLUDE input field for searching employees by:
     - Name
     - Surname
+    - Email
     - ID number
     - Department
     - Duration at organization
-
-//Notification Component:
-    CREATE Notification component
-    DISPLAY notifications for actions like adding, updating, or deleting employees
 
 //Set Up State:
     USE useState hook to manage state for:
@@ -54,7 +51,7 @@ DEFINE consistent color scheme and typography using CSS or Tailwind
     USE useState hook to manage state for:
     - Employees
     - Selected employee
-    - Notifications
+    
 
 //CRUD Operations:
     IMPLEMENT handleAddOrUpdateEmployee function:

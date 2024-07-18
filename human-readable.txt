@@ -8,15 +8,14 @@ Step 1: Design the User Interface
 
 Step 2: Create the Main Components
     (a)Header Component:
-        Create a header component to display the application title and navigation links if needed.
+        Create a header component to display the application title.
     (b)EmployeeList Component:
         Create a component to display a list of employees with basic details and buttons for editing and deleting each employee.
     (c)EmployeeForm Component:
         Create a form component for adding and editing employee details. Include fields for name, surname, email, position, department, phone, image URL, and start date.
     (d)SearchBar Component:
         Create a search bar component to filter employees by name, surname, ID number, department, and duration at the organization.
-    (e)Notification Component:
-        Create a component to display notifications for actions like adding, updating, or deleting employees.
+   
     
 Step 3: Implement State Management
     (a)Set Up State:
