@@ -1,28 +1,23 @@
+
 import React, { useState, useEffect } from 'react';
 import HeaderComp from './components/HeaderComp';
 import EmployeeList from './components/EmployeeList';
 import EmployeeForm from './components/EmployeeForm';
 import SearchBar from './components/SearchBar';
-import './App.css'
+import { saveToLocalStorage, loadFromLocalStorage } from './utils/LocalStorage';
+import './App.css';
 
 const App = () => {
-  // State to manage employees, selected employee, and search query
-  const [employees, setEmployees] = useState([]);
+  const LOCAL_STORAGE_KEY = 'employees';
+  
+  const [employees, setEmployees] = useState(() => loadFromLocalStorage(LOCAL_STORAGE_KEY) || []);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  // Load employees from localStorage when the component mounts
   useEffect(() => {
-    const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-    setEmployees(storedEmployees);
-  }, []);
-
-  // Save employees to localStorage whenever employees state changes
-  useEffect(() => {
-    localStorage.setItem('employees', JSON.stringify(employees));
+    saveToLocalStorage(LOCAL_STORAGE_KEY, employees);
   }, [employees]);
 
-  // Handle adding or updating an employee
   const handleAddOrUpdateEmployee = (employee) => {
     if (employee.id) {
       setEmployees((prevEmployees) =>
@@ -34,46 +29,57 @@ const App = () => {
       employee.id = new Date().getTime().toString();
       setEmployees((prevEmployees) => [...prevEmployees, employee]);
     }
-    setSelectedEmployee(null); // Reset selected employee after saving
+    setSelectedEmployee(null);
   };
 
-  // Handle selecting an employee for editing
   const handleEdit = (employee) => {
     setSelectedEmployee(employee);
   };
 
-  // Handle deleting an employee
   const handleDelete = (id) => {
     setEmployees((prevEmployees) =>
       prevEmployees.filter((employee) => employee.id !== id)
     );
   };
 
-  // Handle searching employees based on user input
-  const handleSearch = (query) => {
-    setSearchQuery(query);
+  const handleSearch = (term) => {
+    setSearchTerm(term);
   };
 
-  // Filter employees based on search query
-  const filteredEmployees = employees.filter((employee) =>
-    `${employee.name} ${employee.surname}`
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase())
-  );
+  const calculateDaysAtOrganization = (startDate) => {
+    const currentDate = new Date();
+    const start = new Date(startDate);
+    const differenceInTime = currentDate - start;
+    return Math.floor(differenceInTime / (1000 * 3600 * 24));
+  };
+
+  const filteredEmployees = employees.filter((employee) => {
+    const term = searchTerm.toLowerCase();
+    const daysAtOrganization = calculateDaysAtOrganization(employee.startDate).toString();
+    
+    return (
+      employee.name.toLowerCase().includes(term) ||
+      employee.surname.toLowerCase().includes(term) ||
+      employee.idNum.includes(term) ||
+      employee.position.includes(term) ||
+      employee.department.toLowerCase().includes(term) ||
+      daysAtOrganization.includes(term)
+    );
+  });
 
   return (
     <div className="app">
-    <HeaderComp />
-    <SearchBar onSearch={handleSearch} />
-    <EmployeeForm
-      selectedEmployee={selectedEmployee}
-      onSave={handleAddOrUpdateEmployee}
-    />
-    <EmployeeList
-      employees={filteredEmployees}
-      onEdit={handleEdit}
-      onDelete={handleDelete}
-    />
+      <HeaderComp />
+      <SearchBar onSearch={handleSearch} />
+      <EmployeeForm
+        selectedEmployee={selectedEmployee}
+        onSave={handleAddOrUpdateEmployee}
+      />
+      <EmployeeList
+        employees={filteredEmployees}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
     </div>
   );
 };

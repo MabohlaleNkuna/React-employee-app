@@ -18,6 +18,7 @@ const SearchBar = ({ onSearch }) => {
         placeholder="Search employees..."
         className="border rounded p-2"
       />
+      
     </div>
   );
 };
