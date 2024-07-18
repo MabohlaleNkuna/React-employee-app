@@ -12,15 +12,7 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Load employees from localStorage when the component mounts
-  useEffect(() => {
-    const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-    setEmployees(storedEmployees);
-  }, []);
 
-  // Save employees to localStorage whenever employees state changes
-  useEffect(() => {
-    localStorage.setItem('employees', JSON.stringify(employees));
-  }, [employees]);
 
   // Handle adding or updating an employee
   const handleAddOrUpdateEmployee = (employee) => {
