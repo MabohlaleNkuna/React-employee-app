@@ -117,6 +117,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         required
       />
       <select
+      type="text"
         name="department"
         value={employee.department}
         onChange={handleChange}

@@ -1,11 +1,11 @@
 import React from 'react';
-import './Employee.css'
+import './Employee.css';
 
 const EmployeeList = ({ employees, onEdit, onDelete }) => {
   return (
     <div className="employee-list">
       {employees.map((employee) => (
-        <div key={employee.id} className="employee-item">
+        <div className="employee" key={employee.id}>
           {employee.imageUrl && (
             <img src={employee.imageUrl} alt="Employee" className="employee-image" />
           )}
@@ -17,8 +17,10 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
             <p>Department: {employee.department}</p>
             <p>Phone: {employee.phone}</p>
             <p>Start Date: {employee.startDate}</p>
-            <button onClick={() => onEdit(employee)}>Edit</button>
-            <button onClick={() => onDelete(employee.id)}>Delete</button>
+            <div className="employee-actions">
+              <button onClick={() => onEdit(employee)}>Edit</button>
+              <button onClick={() => onDelete(employee.id)}>Delete</button>
+            </div>
           </div>
         </div>
       ))}

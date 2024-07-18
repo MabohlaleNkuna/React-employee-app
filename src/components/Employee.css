@@ -1,14 +1,16 @@
-/* Base styles for the application */
+
 .app {
   max-width: 80%;
   width: 1000px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #d8dde2;
+  background-color: #f8fafb;
   height: auto;
-  font-family: serif;
-  color:#1F3B5C;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: #1F3B5C;
+  font-weight: lighter;
 }
+
 
 .employee-form {
   display: flex;
@@ -43,13 +45,16 @@
 }
 
 .employee-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 1rem; /* Space between items */
+  margin-top: 100px;
+
 }
 
 .employee-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 1rem;
   border: 1px solid #ddd;
@@ -58,18 +63,25 @@
 }
 
 .employee-image {
-  width: 100px;
-  height: 160px;
-  border-radius: 10%;
+  width: 130px;
+  height: 140px;
+  border-radius: 50%;
   object-fit: cover;
-  margin-right: 1rem;
-  margin-top: -75px;
+ 
+  margin-left: 75px; 
+  margin-top: 25px;
+  
 }
-
+.employee{
+  
+  background-color: white;
+}
 .employee-details {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  margin-left: 15px;
+  
 }
 
 .employee-details h3 {
@@ -78,19 +90,21 @@
 
 .employee-details p {
   margin: 0.2rem 0;
+  
 }
 
 .employee-details button {
-  margin-right: 0.5rem;
-  padding: 0.3rem 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.5rem;
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  background-color: #d8dde2;
+  background-color: #4caf50;
+  
 }
 
 .employee-details button:hover {
-  background-color: #4caf50;
+  background-color: #d8dde2;
 }
 
 #employee-form input[type="text"]::placeholder,
@@ -122,51 +136,42 @@ select {
     padding: 10px;
   }
 
+  .employee-list {
+    grid-template-columns: 1fr; /* One column on small screens */
+  }
+
   .employee-item {
     flex-direction: column;
     align-items: flex-start;
   }
 
   .employee-image {
+    width: 80px;
+    height: 80px;
     margin-bottom: 10px;
-    margin-top: 0;
   }
 }
 
-  .employee-form {
-    gap: 0.5rem;
+@media (max-width: 1120px) {
+  .app {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 50px;
   }
+}
 
-  .employee-item {
-    padding: 0.5rem;
+@media (max-width: 1114px) {
+  .app {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 100px;
   }
+}
 
-  .employee-image {
-    width: 80px;
-    height: 80px;
+@media (max-width: 760px) {
+  .employee-list {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 30px;
   }
-
-  @media (max-width: 1120px) {
-    .app {
-      width: 100%;
-      padding-left: 10px;
-      padding-right: 50px;
-    }
-  }
-  @media (max-width: 1114px) {
-    .app {
-      width: 100%;
-      padding-left: 50px;
-      padding-right: 100px;
-    }
-  }
-
-  @media (max-width: 760px) {
-    .employee-list {
-      width: 100%;
-      padding-left: 10px;
-      padding-right: 30px;
-    }
-  }
-
- 
+}
