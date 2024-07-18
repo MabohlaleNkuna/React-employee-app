@@ -1,13 +1,13 @@
 /* Base styles for the application */
 .app {
-  max-width: 100%;
+  max-width: 80%;
   width: 1000px;
   margin: 0 auto;
   padding: 20px;
   background-color: #d8dde2;
   height: auto;
   font-family: serif;
-  color: #1F3B5C;
+  color:#1F3B5C;
 }
 
 .employee-form {
