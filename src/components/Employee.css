@@ -46,8 +46,8 @@
 
 .employee-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
-  gap: 1rem; /* Space between items */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1rem; 
   margin-top: 100px;
 
 }
@@ -124,7 +124,7 @@ select {
   color: #6C757D;
 }
 
-/* Responsive adjustments for screens smaller than 768px */
+
 @media (max-width: 768px) {
   .app {
     padding-left: 10px;
@@ -137,7 +137,7 @@ select {
   }
 
   .employee-list {
-    grid-template-columns: 1fr; /* One column on small screens */
+    grid-template-columns: 1fr; 
   }
 
   .employee-item {
