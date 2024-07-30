@@ -99,7 +99,6 @@
   cursor: pointer;
   background-color: #4caf50;
   margin-left: 5px;
-
 }
 
 .employee-details button:hover {
@@ -178,18 +177,33 @@ select {
     padding-right: 80px;
   }
 }
+
 @media (max-width: 420px) {
   .employee-list {
     width: 100%;
-    padding-left: 10px;
-    margin-right: 20px;
+    margin-left: 0;
+    padding-right: 0;
   }
 }
 
+@media (max-width: 320px) {
+  .employee-list {
+    width: 100%;
+    margin-left: 0;
+    padding-right: 0;
+  }
+}
+@media (max-width: 320px) {
+  .employee-details {
+    width: 150px;
+    margin-right: 10x;
+   
+  }
+}
 @media (max-width: 936px) {
-  .employee {
+  .employee-details {
     width: 100%;
     padding-left: 10px;
-    margin-right: 10px;
+    margin-left: 10px;
   }
 }
