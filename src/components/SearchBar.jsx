@@ -15,7 +15,7 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         value={query}
         onChange={handleInputChange}
-        placeholder="Search employees..."
+        placeholder="Search by name or department"
         className="border rounded p-2"
       />
       
