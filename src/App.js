@@ -58,6 +58,7 @@ const App = () => {
   const filteredEmployees = employees.filter((employee) => {
     const term = searchTerm.toLowerCase();
     const daysAtOrganization = calculateDaysAtOrganization(employee.startDate).toString();
+    const formattedStartDate = new Date(employee.startDate).toISOString().slice(0, 10);
     
     return (
       employee.name.toLowerCase().includes(term) ||
@@ -65,7 +66,8 @@ const App = () => {
       employee.idNum.includes(term) ||
       employee.position.includes(term) ||
       employee.department.toLowerCase().includes(term) ||
-      daysAtOrganization.includes(term)
+      daysAtOrganization.includes(term) ||
+      formattedStartDate.includes(term)
     );
   });
 
