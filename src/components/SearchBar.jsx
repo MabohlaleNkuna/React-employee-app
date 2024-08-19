@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const SearchBar = ({ onSearch }) => {
@@ -10,15 +9,14 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-bar">
+    <div className="search-bar-container">
       <input
         type="text"
         value={query}
         onChange={handleInputChange}
         placeholder="Search by name or department"
-        className="border rounded p-2"
+        className="search-bar-input"
       />
-      
     </div>
   );
 };
