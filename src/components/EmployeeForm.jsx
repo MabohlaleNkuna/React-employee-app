@@ -15,6 +15,8 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
   });
 
   const [idError, setIdError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+  const [dateError, setDateError] = useState('');
   const [storageError, setStorageError] = useState('');
 
   useEffect(() => {
@@ -25,11 +27,31 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'idNum' && value.length > 13) {
+
+    if (name === 'idNum' && !/^\d*$/.test(value)) {
+      setIdError('ID number must be numeric');
+    } else if (name === 'idNum' && value.length > 13) {
       setIdError('ID number must be up to 13 characters long');
-      return;
     } else {
       setIdError('');
+    }
+
+    if (name === 'phone') {
+      if (!/^\d*$/.test(value)) {
+        setPhoneError('Phone number cannot contain letters or special characters');
+      } else {
+        setPhoneError('');
+      }
+    }
+
+    if (name === 'startDate') {
+      const today = new Date();
+      const selectedDate = new Date(value);
+      if (selectedDate > today) {
+        setDateError('Start date cannot be in the future');
+      } else {
+        setDateError('');
+      }
     }
 
     setEmployee((prevEmployee) => ({
@@ -56,6 +78,11 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
     e.preventDefault();
     if (employee.idNum.length !== 13) {
       setIdError('ID number must be exactly 13 characters long');
+      return;
+    }
+
+    if (idError || phoneError || dateError) {
+      alert(idError || phoneError || dateError);
       return;
     }
 
@@ -124,7 +151,6 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         required
       />
       <select
-        type="text"
         name="department"
         value={employee.department}
         onChange={handleChange}
@@ -144,7 +170,10 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         onChange={handleChange}
         placeholder="Phone"
         required
+        pattern="\d*"
+        title="Phone number cannot contain letters or special characters"
       />
+      {phoneError && <p className="error-message">{phoneError}</p>}
       <input
         type="file"
         accept="image/*"
@@ -161,7 +190,9 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         onChange={handleChange}
         placeholder="Start Date"
         required
+        min="1900-01-01"
       />
+      {dateError && <p className="error-message">{dateError}</p>}
       <button type="submit">{selectedEmployee ? 'Update' : 'Add'} Employee</button>
       {storageError && <p className="error-message">{storageError}</p>}
     </form>

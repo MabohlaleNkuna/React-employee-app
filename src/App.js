@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import HeaderComp from './components/HeaderComp';
 import EmployeeList from './components/EmployeeList';
@@ -25,9 +24,11 @@ const App = () => {
           emp.id === employee.id ? employee : emp
         )
       );
+      alert('Employee updated successfully!');
     } else {
       employee.id = new Date().getTime().toString();
       setEmployees((prevEmployees) => [...prevEmployees, employee]);
+      alert('Employee added successfully!');
     }
     setSelectedEmployee(null);
   };
@@ -40,6 +41,7 @@ const App = () => {
     setEmployees((prevEmployees) =>
       prevEmployees.filter((employee) => employee.id !== id)
     );
+    alert('Employee deleted successfully!');
   };
 
   const handleSearch = (term) => {
