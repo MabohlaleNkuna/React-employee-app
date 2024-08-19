@@ -15,6 +15,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
   });
 
   const [idError, setIdError] = useState('');
+  const [storageError, setStorageError] = useState('');
 
   useEffect(() => {
     if (selectedEmployee) {
@@ -25,7 +26,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'idNum' && value.length > 13) {
-      setIdError('ID number must be exactly 13 characters long');
+      setIdError('ID number must be up to 13 characters long');
       return;
     } else {
       setIdError('');
@@ -58,18 +59,24 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
       return;
     }
 
-    onSave(employee);
-    setEmployee({
-      name: '',
-      surname: '',
-      email: '',
-      idNum: '',
-      position: '',
-      department: '',
-      phone: '',
-      imageUrl: '',
-      startDate: '',
-    });
+    try {
+      onSave(employee);
+      setEmployee({
+        name: '',
+        surname: '',
+        email: '',
+        idNum: '',
+        position: '',
+        department: '',
+        phone: '',
+        imageUrl: '',
+        startDate: '',
+      });
+    } catch (error) {
+      if (error.name === 'QuotaExceededError') {
+        setStorageError('Local storage limit exceeded. Please clear some space.');
+      }
+    }
   };
 
   return (
@@ -117,7 +124,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         required
       />
       <select
-      type="text"
+        type="text"
         name="department"
         value={employee.department}
         onChange={handleChange}
@@ -156,6 +163,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         required
       />
       <button type="submit">{selectedEmployee ? 'Update' : 'Add'} Employee</button>
+      {storageError && <p className="error-message">{storageError}</p>}
     </form>
   );
 };
