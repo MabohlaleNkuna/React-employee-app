@@ -1,4 +1,4 @@
-
+/* General Styles */
 .app {
   max-width: 80%;
   width: 100%;
@@ -154,7 +154,7 @@ select {
   .app {
     width: 100%;
     padding-left: 10px;
-    margin-right: 100px;
+    -right: 100px;
   }
 }
 
