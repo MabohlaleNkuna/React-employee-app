@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Employee.css';
-import Button from './Button'; // Import the Button component
+import Button from './Button'; 
+import TextInput from './TextInput'; 
+import SelectInput from './SelectInput';
+import FileInput from './FileInput'; 
 
 const EmployeeForm = ({ selectedEmployee, onSave }) => {
   const [employee, setEmployee] = useState({
@@ -110,23 +113,21 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
   return (
     <form id="employee-form" onSubmit={handleSubmit} className="employee-form">
       <h2>{selectedEmployee ? 'Edit Employee' : 'Add Employee'}</h2>
-      <input
-        type="text"
+      <TextInput
         name="name"
         value={employee.name}
         onChange={handleChange}
         placeholder="Name"
         required
       />
-      <input
-        type="text"
+      <TextInput
         name="surname"
         value={employee.surname}
         onChange={handleChange}
         placeholder="Surname"
         required
       />
-      <input
+      <TextInput
         type="email"
         name="email"
         value={employee.email}
@@ -134,8 +135,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         placeholder="Email"
         required
       />
-      <input
-        type="text"
+      <TextInput
         name="idNum"
         value={employee.idNum}
         onChange={handleChange}
@@ -143,29 +143,27 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         required
       />
       {idError && <p className="error-message">{idError}</p>}
-      <input
-        type="text"
+      <TextInput
         name="position"
         value={employee.position}
         onChange={handleChange}
         placeholder="Position"
         required
       />
-      <select
+      <SelectInput
         name="department"
         value={employee.department}
         onChange={handleChange}
+        options={[
+          { value: 'HR', label: 'HR' },
+          { value: 'Information-technology', label: 'Information Technology' },
+          { value: 'Engineering', label: 'Engineering' },
+          { value: 'Marketing', label: 'Marketing' },
+          { value: 'Sales', label: 'Sales' },
+        ]}
         required
-      >
-        <option value="" disabled>Select Department</option>
-        <option value="HR">HR</option>
-        <option value="Information-technology">Information Technology</option>
-        <option value="Engineering">Engineering</option>
-        <option value="Marketing">Marketing</option>
-        <option value="Sales">Sales</option>
-      </select>
-      <input
-        type="text"
+      />
+      <TextInput
         name="phone"
         value={employee.phone}
         onChange={handleChange}
@@ -175,9 +173,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         title="Phone number cannot contain letters or special characters"
       />
       {phoneError && <p className="error-message">{phoneError}</p>}
-      <input
-        type="file"
-        accept="image/*"
+      <FileInput
         onChange={handleImageChange}
         required
       />
