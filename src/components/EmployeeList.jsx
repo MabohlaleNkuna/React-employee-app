@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 import './Employee.css';
 
 const EmployeeList = ({ employees, onEdit, onDelete }) => {
@@ -18,8 +19,8 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
             <p>Phone: {employee.phone}</p>
             <p>Start Date: {employee.startDate}</p>
             <div className="employee-actions">
-              <button onClick={() => onEdit(employee)}>Edit</button>
-              <button onClick={() => onDelete(employee.id)}>Delete</button>
+              <Button onClick={() => onEdit(employee)}>Edit</Button>
+              <Button onClick={() => onDelete(employee.id)}>Delete</Button>
             </div>
           </div>
         </div>

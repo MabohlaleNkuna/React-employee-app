@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Employee.css';
+import Button from './Button'; // Import the Button component
 
 const EmployeeForm = ({ selectedEmployee, onSave }) => {
   const [employee, setEmployee] = useState({
@@ -193,7 +194,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         min="1900-01-01"
       />
       {dateError && <p className="error-message">{dateError}</p>}
-      <button type="submit">{selectedEmployee ? 'Update' : 'Add'} Employee</button>
+      <Button type="submit">{selectedEmployee ? 'Update' : 'Add'} Employee</Button>
       {storageError && <p className="error-message">{storageError}</p>}
     </form>
   );

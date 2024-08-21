@@ -14,7 +14,7 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         value={query}
         onChange={handleInputChange}
-        placeholder="Search by name or department"
+        placeholder="Search by name, department or start date"
         className="search-bar-input"
       />
     </div>
