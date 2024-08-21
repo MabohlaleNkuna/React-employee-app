@@ -21,6 +21,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
   const [idError, setIdError] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [dateError, setDateError] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [storageError, setStorageError] = useState('');
 
   useEffect(() => {
@@ -58,6 +59,16 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
       }
     }
 
+    if (name === 'email') {
+      // Basic email regex validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        setEmailError('Invalid email format');
+      } else {
+        setEmailError('');
+      }
+    }
+
     setEmployee((prevEmployee) => ({
       ...prevEmployee,
       [name]: value,
@@ -85,8 +96,8 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
       return;
     }
 
-    if (idError || phoneError || dateError) {
-      alert(idError || phoneError || dateError);
+    if (idError || phoneError || dateError || emailError) {
+      alert(idError || phoneError || dateError || emailError);
       return;
     }
 
@@ -135,6 +146,7 @@ const EmployeeForm = ({ selectedEmployee, onSave }) => {
         placeholder="Email"
         required
       />
+      {emailError && <p className="error-message">{emailError}</p>}
       <TextInput
         name="idNum"
         value={employee.idNum}

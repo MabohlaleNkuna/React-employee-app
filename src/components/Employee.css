@@ -24,14 +24,6 @@ h2 {
   margin-right: auto;
 }
 
-.search-bar-container {
-  display: flex;
-  justify-content: center;
-  padding: 11px 12px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
 .search-bar-input {
   width: 100%;
   max-width: 400px;
@@ -51,7 +43,8 @@ h2 {
 @media (max-width: 768px) {
   .search-bar-input {
     max-width: 90%;
-    font-size: 14px;
+    font-size: 13px;
+    padding: 8px; /* Adjust padding to fit the font size */
   }
 }
 
@@ -59,6 +52,7 @@ h2 {
   .search-bar-input {
     max-width: 100%;
     font-size: 12px;
+    padding: 6px; /* Adjust padding further for smaller screens */
   }
 }
 
@@ -114,7 +108,7 @@ h2 {
   flex-direction: row;
   align-items: center;
   padding: 1rem;
-  border: 2px solid #1F3B5C; /* Changed border color and thickness */
+  border: 2px solid #1F3B5C;
   border-radius: 5px;
   background-color: #f9f9f9;
   margin-bottom: 1rem;
