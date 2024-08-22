@@ -1,16 +1,12 @@
 .app {
-  width: calc(100% - 60px);
   margin: 0 auto;
-  padding: 20px;
-  background-color: #ecedee;
+  padding: 20px 30px;
+  
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: #1F3B5C;
   font-weight: lighter;
-  padding-left: 30px;
-  padding-right: 30px;
   height: 100vh;
   text-align: center;
-  height: auto;
 }
 
 h1 {
@@ -44,7 +40,7 @@ h2 {
   .search-bar-input {
     max-width: 90%;
     font-size: 13px;
-    padding: 8px; /* Adjust padding to fit the font size */
+    padding: 8px;
   }
 }
 
@@ -52,7 +48,7 @@ h2 {
   .search-bar-input {
     max-width: 100%;
     font-size: 12px;
-    padding: 6px; /* Adjust padding further for smaller screens */
+    padding: 6px;
   }
 }
 
@@ -225,3 +221,138 @@ select {
     text-align: center;
   }
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.custom-button {
+  background-color: #1F3B5C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  top: 10px;
+}
+
+
+.custom-button:hover {
+  background-color: #162D43;
+}
+
+.custom-button:active {
+  background-color: #0F1A2A;
+}
+
+.employee-list {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.employee-table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.employee-table th,
+.employee-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.employee-table th {
+  background-color: #1F3B5C;
+  color: #fff;
+  text-align: left;
+}
+
+.employee-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.employee-table tr:hover {
+  background-color: #ddd;
+}
+
+.employee-details-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 1000;
+  width: 80%;
+  max-width: 600px;
+}
+
+.employee-details-modal h3 {
+  margin-top: 0;
+}
+
+.employee-image {
+  max-width: 100px;
+  border-radius: 5px;
+}
+
+.employee-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 500px) {
+  .employee-table {
+    margin-left: auto; 
+    margin-right: auto; 
+    padding-left: 20px; 
+    padding-right: 20px; 
+  }
+
+  .employee-table th,
+  .employee-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+  .custom-button{
+    border-radius: 3px;
+    font-size: 12px;
+  }
+}
+
+
+

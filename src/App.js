@@ -3,6 +3,8 @@ import HeaderComp from './components/HeaderComp';
 import EmployeeList from './components/EmployeeList';
 import EmployeeForm from './components/EmployeeForm';
 import SearchBar from './components/SearchBar';
+import Modal from './components/Modal';
+import Button from './components/Button';
 import { saveToLocalStorage, loadFromLocalStorage } from './utils/LocalStorage';
 import './App.css';
 
@@ -12,6 +14,7 @@ const App = () => {
   const [employees, setEmployees] = useState(() => loadFromLocalStorage(LOCAL_STORAGE_KEY) || []);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     saveToLocalStorage(LOCAL_STORAGE_KEY, employees);
@@ -31,10 +34,12 @@ const App = () => {
       alert('Employee added successfully!');
     }
     setSelectedEmployee(null);
+    setIsModalOpen(false);
   };
 
   const handleEdit = (employee) => {
     setSelectedEmployee(employee);
+    setIsModalOpen(true);
   };
 
   const handleDelete = (id) => {
@@ -46,6 +51,11 @@ const App = () => {
 
   const handleSearch = (term) => {
     setSearchTerm(term);
+  };
+
+  const handleAddEmployeeClick = () => {
+    setSelectedEmployee(null);
+    setIsModalOpen(true);
   };
 
   const calculateDaysAtOrganization = (startDate) => {
@@ -75,10 +85,13 @@ const App = () => {
     <div className="app">
       <HeaderComp />
       <SearchBar onSearch={handleSearch} />
-      <EmployeeForm
-        selectedEmployee={selectedEmployee}
-        onSave={handleAddOrUpdateEmployee}
-      />
+      <Button className="custom-button" onClick={handleAddEmployeeClick}>Add New Employee</Button>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <EmployeeForm
+          selectedEmployee={selectedEmployee}
+          onSave={handleAddOrUpdateEmployee}
+        />
+      </Modal>
       <EmployeeList
         employees={filteredEmployees}
         onEdit={handleEdit}
