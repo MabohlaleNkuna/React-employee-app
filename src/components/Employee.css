@@ -351,6 +351,7 @@ select {
   .custom-button{
     border-radius: 3px;
     font-size: 12px;
+    margin-bottom: 2px;
   }
 }
 
