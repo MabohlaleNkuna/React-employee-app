@@ -4,7 +4,15 @@ export const saveToLocalStorage = (key, data) => {
   };
   
   export const loadFromLocalStorage = (key) => {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-  };
+    try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : []; 
+    } catch (error) {
+        console.error("Error loading from LocalStorage:", error);
+        localStorage.removeItem(key); 
+        return []; 
+    }
+};
+
+
   

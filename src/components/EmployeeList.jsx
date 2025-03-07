@@ -20,30 +20,32 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
 
   return (
     <div className="employee-list">
-      {/* Table for displaying basic employee info */}
-      <table className="employee-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>ID</th>
-            <th>Department</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee) => (
-            <tr key={employee.id}>
-              <td>{employee.name} {employee.surname}</td>
-              <td>{employee.id}</td>
-              <td>{employee.department}</td>
-              <td>
-                <Button onClick={() => handleViewDetails(employee)} className="custom-button">View Details</Button>
-              </td>
+      {/* Show the table only if there are employees */}
+      {employees.length > 0 && (
+        <table className="employee-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>ID</th>
+              <th>Department</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
+          </thead>
+          <tbody>
+            {employees.map((employee) => (
+              <tr key={employee.id}>
+                <td>{employee.name} {employee.surname}</td>
+                <td>{employee.id}</td>
+                <td>{employee.department}</td>
+                <td>
+                  <Button onClick={() => handleViewDetails(employee)} className="custom-button">View Details</Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+  
       {/* Modal for showing full employee details */}
       {selectedEmployee && (
         <div className="employee-details-modal">
